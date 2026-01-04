@@ -8,5 +8,8 @@
     "build": "echo \"No build step for static site\""
   },
   "author": "TwoRus",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "cloudinary": "^2.8.0"
+  }
 }
