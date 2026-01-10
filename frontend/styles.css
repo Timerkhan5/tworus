@@ -1,0 +1,256 @@
+:root {
+    --accent: #d35400;
+    --bg: #fafafa;
+    --text: #222;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, Segoe UI, sans-serif;
+    font-family: Inter,Segoe UI,Arial,sans-serif;
+    margin: 0;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.5;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+.site-header {
+    background: #111;
+    color: #fff;
+    padding: 28px 0;
+}
+
+    .site-header h1 {
+        margin: 0;
+        font-size: 32px;
+        font-family: 'Manrope', sans-serif;
+        font-weight: 700;
+    }
+
+.tagline {
+    opacity: 0.9;
+    margin-top: 8px;
+}
+
+h2 {
+    color: var(--accent);
+    margin-top: 32px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+}
+
+#about p {
+    max-width: 70ch;
+}
+
+#gallery .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin-top: 12px;
+    max-height: 260px; /* высота одного ряда */
+    overflow-y: auto; /* вертикальный скролл */
+    padding-right: 6px;
+}
+
+    #gallery .grid::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    #gallery .grid::-webkit-scrollbar-thumb {
+        background: #d35400;
+        border-radius: 4px;
+    }
+
+    #gallery .grid::-webkit-scrollbar-track {
+        background: #f0f0f0;
+    }
+
+/* Карточки */
+.card {
+    position: relative;
+    width: 100%;
+    padding-top: 75%; /* 4:3 соотношение */
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    /* Картинка / видео внутри карточки */
+    .card img,
+    .card video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* превью можно cover */
+        object-position: center;
+        display: block;
+    }
+
+        .card img.loaded {
+            opacity: 1;
+        }
+
+        .card img.failed {
+            object-fit: contain;
+            background: #f4f4f4;
+        }
+
+/* --- Карта --- */
+.map-wrapper {
+    height: 320px;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-top: 12px;
+}
+
+    .map-wrapper iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
+/* --- Модалка --- */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+    .modal.hidden {
+        display: none;
+    }
+
+.modal-content {
+    max-width: 90%;
+    max-height: 90%;
+    background: #111;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.modal-close {
+    position: absolute;
+    right: 18px;
+    top: 18px;
+    background: #fff;
+    border: 0;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.modal-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.9);
+    border: 0;
+    padding: 10px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+    .modal-nav[aria-label="Previous"] {
+        left: 18px;
+    }
+
+    .modal-nav[aria-label="Next"] {
+        right: 18px;
+    }
+
+.modal-toolbar {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 8px;
+}
+
+.modal-counter {
+    color: #fff;
+    background: rgba(0,0,0,0.4);
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.site-footer {
+    padding: 18px 0;
+    text-align: center;
+    color: #666;
+    margin-top: 36px;
+}
+
+/* --- Мобильная адаптация --- */
+@media (max-width: 600px) {
+    .site-header h1 {
+        font-size: 24px;
+    }
+
+    #gallery .grid {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        max-height: 180px; /* чуть меньше на мобиле */
+    }
+
+    .card {
+        padding-top: 75%; /* сохраняем пропорции */
+    }
+}
+.toggle-gallery {
+    display: block;
+    margin: 12px auto 0;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+    .toggle-gallery:hover {
+        background: #e74c3c;
+    }
+
+#gallery .grid.collapsed {
+    max-height: 260px; /* 1 ряд */
+    overflow-y: auto;
+    transition: max-height 0.3s ease;
+}
+
+#gallery .grid.expanded {
+    max-height: 2000px; /* почти без ограничения */
+}
+/* Фикс размера медиа в модалке */
+.modal-content img,
+.modal-content video {
+    max-width: 100%;
+    max-height: 80vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}

@@ -1,0 +1,75 @@
+<!--index.html-->
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ТуРус</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1>ТуРус</h1>
+            <p class="tagline">Профессиональные сварочные работы</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="about">
+            <h2>ТуРус — практичные решения из металла, которым можно доверять.</h2>
+            <p>
+                Компания ТуРус специализируется на изготовлении и монтаже навесов, заборов, садовой мебели, гибки листового металла любой сложности. Мы работаем с частными и коммерческими объектами, предлагая надежные конструкции, аккуратное исполнение и точное соблюдение сроков.
+                Используем качественные материалы и современное оборудование, что позволяет добиваться прочности, эстетики и долговечности изделий. Индивидуальный подход к каждому заказу, точные замеры и контроль качества на всех этапах — основа нашей работы.
+            </p>
+            
+        </section>
+
+        <section id="gallery">
+            <h2>Галерея работ</h2>
+            <p>Ниже примеры наших работ (фото и видео).</p>
+            <div id="media-grid" class="grid"></div>
+            <button id="toggle-gallery" class="toggle-gallery">Показать все</button>
+        </section>
+
+        <section id="location">
+            <h2>Расположение</h2>
+            <p>Наш офис и мастерская: <span id="address">Cамарская область,Красноярский район,Светлое Поле,Советская 1е</span></p>
+
+
+            <div class="map-wrapper">
+                <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A8af1c55ab1386e1f70ad3f35f6a70a09537ba7e9ebffad01c2db4ccd723884e8&amp;source=constructor" width="818" height="478" frameborder="0"></iframe>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Контакты</h2>
+            <p><a href=" +79376607060">+7 (937) 660 70 60</a></p>
+            <p><a href="+79272966677">+7 (927) 296 66 77</a></p>
+
+            <p>Email: <a href="turus163@mail.ru">turus163@mail.ru</a></p>
+        </section>
+    </main>
+
+    <div id="modal" class="modal hidden" role="dialog" aria-hidden="true">
+        <button id="modal-close" class="modal-close">×</button>
+        <button id="modal-prev" class="modal-nav" aria-label="Previous">‹</button>
+        <div id="modal-content" class="modal-content">
+            <div id="modal-toolbar" class="modal-toolbar">
+                <span id="modal-counter" class="modal-counter"></span>
+            </div>
+        </div>
+        <button id="modal-next" class="modal-nav" aria-label="Next">›</button>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container">© <span id="year"></span> TuRus — Все права защищены</div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
