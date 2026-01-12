@@ -13,7 +13,7 @@ let currentIndex = -1;
 
 async function loadMedia(){
   try{
-      const res = await fetch('/api/gallery');
+      const res = await fetch('https://api.турус.рф/api/gallery');
     if(!res.ok) throw new Error('Не удалось загрузить media.json');
       const items = await res.json();
     const images = (items || []).filter(i => i.type === 'image');
