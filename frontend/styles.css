@@ -23,23 +23,70 @@ body {
     padding: 24px;
 }
 
+
 .site-header {
-    background: #111;
+    position: relative;
     color: #fff;
-    padding: 28px 0;
+    text-align: center;
+    width: 100%;
+    overflow: hidden;
+}
+
+    .site-header .background-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+
+        .site-header .background-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 1;
+        }
+
+    .site-header .background-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("Frame 42.jpg") center / cover no-repeat;
+        z-index: 0;
+    }
+
+    .site-header .content {
+        padding: 120px 20px;
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+
+@media (max-width: 768px) {
+    .site-header .content {
+        padding: 80px 16px;
+    }
 }
 
     .site-header h1 {
         margin: 0;
-        font-size: 32px;
-        font-family: 'Manrope', sans-serif;
+        font-size: 42px;
         font-weight: 700;
     }
 
 .tagline {
-    opacity: 0.9;
-    margin-top: 8px;
+    margin-top: 12px;
+    font-size: 18px;
+    opacity: 0.95;
 }
+
 
 h2 {
     color: var(--accent);
@@ -57,8 +104,8 @@ h2 {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 12px;
     margin-top: 12px;
-    max-height: 260px; /* высота одного ряда */
-    overflow-y: auto; /* вертикальный скролл */
+    max-height: 260px; 
+    overflow-y: auto; 
     padding-right: 6px;
 }
 
@@ -75,11 +122,10 @@ h2 {
         background: #f0f0f0;
     }
 
-/* Карточки */
 .card {
     position: relative;
     width: 100%;
-    padding-top: 75%; /* 4:3 соотношение */
+    padding-top: 75%; 
     background: #fff;
     border-radius: 8px;
     overflow: hidden;
@@ -90,7 +136,6 @@ h2 {
     justify-content: center;
 }
 
-    /* Картинка / видео внутри карточки */
     .card img,
     .card video {
         position: absolute;
@@ -98,7 +143,7 @@ h2 {
         left: 0;
         width: 100%;
         height: 100%;
-        object-fit: cover; /* превью можно cover */
+        object-fit: cover; 
         object-position: center;
         display: block;
     }
@@ -112,7 +157,6 @@ h2 {
             background: #f4f4f4;
         }
 
-/* --- Карта --- */
 .map-wrapper {
     height: 320px;
     overflow: hidden;
@@ -126,7 +170,6 @@ h2 {
         border: 0;
     }
 
-/* --- Модалка --- */
 .modal {
     position: fixed;
     inset: 0;
@@ -202,19 +245,23 @@ h2 {
     margin-top: 36px;
 }
 
-/* --- Мобильная адаптация --- */
-@media (max-width: 600px) {
-    .site-header h1 {
-        font-size: 24px;
+
+@media (max-width: 768px) {
+    .site-header {
+        padding: 60px 16px;
     }
+
+        .site-header h1 {
+            font-size: 24px;
+        }
 
     #gallery .grid {
         grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-        max-height: 180px; /* чуть меньше на мобиле */
+        max-height: 180px; 
     }
 
     .card {
-        padding-top: 75%; /* сохраняем пропорции */
+        padding-top: 75%; 
     }
 }
 .toggle-gallery {
@@ -235,15 +282,14 @@ h2 {
     }
 
 #gallery .grid.collapsed {
-    max-height: 260px; /* 1 ряд */
+    max-height: 260px; 
     overflow-y: auto;
     transition: max-height 0.3s ease;
 }
 
 #gallery .grid.expanded {
-    max-height: 2000px; /* почти без ограничения */
+    max-height: 2000px; 
 }
-/* Фикс размера медиа в модалке */
 .modal-content img,
 .modal-content video {
     max-width: 100%;
