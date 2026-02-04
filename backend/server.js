@@ -50,6 +50,9 @@ const __dirname = path.dirname(__filename);
 
 app.use(express.static(path.join(__dirname, "../frontend")));
 
+// Serve project-level `src` (images/icons) at /src so frontend can load /src/icons/...
+app.use('/src', express.static(path.join(__dirname, '../src')));
+
 app.get("*", (_, res) => {
     res.sendFile(path.join(__dirname, "../frontend/index.html"));
 });

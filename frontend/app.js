@@ -38,10 +38,8 @@ function toggleGallery() {
     }
 }
 
-// инициализация
 toggleBtn.addEventListener('click', toggleGallery);
 
-// при загрузке галереи сразу ставим collapsed
 document.addEventListener('DOMContentLoaded', () => {
     const grid = document.getElementById('media-grid');
     grid.classList.add('collapsed');
