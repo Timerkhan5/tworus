@@ -45,6 +45,32 @@ app.get("/api/gallery", async (req, res) => {
     }
 });
 
+// API endpoint для получения иконок из Cloudinary
+app.get("/api/icons", async (req, res) => {
+    try {
+        // Ищем иконки в папке tworus_icons (или другой, если у вас другая структура)
+        const result = await cloudinary.search
+            .expression("folder:tworus_icons OR folder:icons")
+            .sort_by("created_at", "desc")
+            .max_results(50)
+            .execute();
+
+        const icons = {};
+        result.resources.forEach(item => {
+            const name = item.public_id.split("/").pop().replace(/\.[^/.]+$/, ""); // убираем расширение
+            icons[name] = cloudinary.url(item.public_id, {
+                secure: true,
+                resource_type: item.resource_type
+            });
+        });
+
+        res.json(icons);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Cloudinary error" });
+    }
+});
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
