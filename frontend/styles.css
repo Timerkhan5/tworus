@@ -434,7 +434,7 @@ h2 {
 .hero-left {
   position: relative;
   background: #fff;
-  padding: 28px 28px 24px;
+  padding: 20px 24px 18px;
   box-shadow: 0 12px 28px rgba(0,0,0,0.08);
   border-radius: 4px;
   overflow: hidden;
@@ -443,9 +443,9 @@ h2 {
 
 .hero-title {
   font-family: "Manrope", "Inter", system-ui, sans-serif;
-  font-size: 38px;
+  font-size: 32px;
   line-height: 1.1;
-  margin: 6px 0 12px;
+  margin: 0 0 10px;
   color: #111;
   font-weight: 700;
 }
@@ -458,15 +458,16 @@ h2 {
 
 .hero-sub {
   color: #666;
-  margin-bottom: 18px;
+  margin-bottom: 14px;
   max-width: 640px;
+  font-size: 14px;
 }
 
 /* CTA buttons */
 .hero-ctas {
   display: flex;
-  gap: 12px;
-  margin-bottom: 20px;
+  gap: 10px;
+  margin-bottom: 14px;
   flex-wrap: wrap;
 }
 
@@ -474,11 +475,11 @@ h2 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 20px;
+  padding: 10px 18px;
   border-radius: 4px;
   text-decoration: none;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .btn-primary {
@@ -502,13 +503,16 @@ h2 {
 
 /* Visualization image */
 .hero-visual {
-  margin-top: 18px;
+  margin-top: 12px;
   max-width: 820px;
+  max-height: 240px;
+  overflow: hidden;
 }
 
 .hero-visual img {
   width: 100%;
   height: auto;
+  max-height: 240px;
   display: block;
   object-fit: contain;
 }
@@ -522,13 +526,17 @@ h2 {
   border-radius: 0;
 }
 
+.hero-pin + .feature {
+  margin-top: 10px;
+}
+
 .hero-pin {
   display: flex;
   align-items: center;
   gap: 12px;
   font-size: 14px;
   color: #555;
-  margin: 4px 0 6px;
+  margin: 0;
 }
 
 .hero-pin img { width: 20px; height: 20px; display:block; }
@@ -539,15 +547,25 @@ h2 {
   grid-template-columns: 1fr auto;
   gap: 16px;
   background: #fff;
-  padding: 16px;
+  padding: 21px;
   border-radius: 4px;
-  align-items: center;
+  align-items: start;
   border: 1px solid #e6e6e6;
   box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  min-height: 100px;
+}
+
+.feature-spacer {
+  flex: 1;
+  min-height: 0;
 }
 
 .feature-text {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 68px;
 }
 
 .feature-title {
@@ -559,8 +577,10 @@ h2 {
 
 .feature-desc {
   margin: 0;
-  font-size: 13px;
-  color: #666;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.4;
+  font-weight: 500;
 }
 
 /* images to the right of cards */
