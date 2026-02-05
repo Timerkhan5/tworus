@@ -182,3 +182,41 @@ document.addEventListener('keydown', (e) => {
 
 
 loadMedia();
+
+// Выравнивание stages-image по первому и последнему stage-item
+function alignStagesImage() {
+  const stagesContainer = document.querySelector('.stages-container');
+  const stagesList = document.querySelector('.stages-list');
+  const stagesImage = document.querySelector('.stages-image');
+  const stageItems = document.querySelectorAll('.stage-item');
+  
+  if (!stagesContainer || !stagesList || !stagesImage || stageItems.length === 0) return;
+  
+  const firstItem = stageItems[0];
+  const lastItem = stageItems[stageItems.length - 1];
+  
+  // Позиции относительно stages-list
+  const firstItemTop = firstItem.offsetTop;
+  const lastItemBottom = lastItem.offsetTop + lastItem.offsetHeight;
+  const height = lastItemBottom - firstItemTop;
+  
+  // Устанавливаем высоту и позицию для изображения
+  stagesImage.style.height = `${height}px`;
+  stagesImage.style.marginTop = `${firstItemTop}px`;
+}
+
+// Выполняем выравнивание после загрузки DOM и при изменении размера окна
+document.addEventListener('DOMContentLoaded', () => {
+  alignStagesImage();
+  
+  // Пересчитываем при изменении размера окна
+  window.addEventListener('resize', () => {
+    setTimeout(alignStagesImage, 100);
+  });
+  
+  // Пересчитываем после загрузки изображений
+  const stagesImageImg = document.querySelector('.stages-image img');
+  if (stagesImageImg) {
+    stagesImageImg.addEventListener('load', alignStagesImage);
+  }
+});

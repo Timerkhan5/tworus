@@ -1,0 +1,18 @@
+<svg width="1440" height="293" viewBox="0 0 1440 293" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="clip0_sta">
+      <rect width="1440" height="293" fill="white" />
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#clip0_sta)">
+    <rect x="-4" width="1444" height="293" fill="#EEEEEE" />
+    <rect x="140" y="30" width="1159" height="233" rx="20" fill="white" />
+
+    <!-- Right orange shape (background for contacts) -->
+    <path
+      d="M1279 30C1290.05 30 1299 38.9543 1299 50V243C1299 254.046 1290.05 263 1279 263H835C823.954 263 815 254.046 815 243V187.907C815 180.607 819.425 174.139 823.823 168.313C828.176 162.546 830.828 154.895 830.828 146.5C830.828 138.105 828.176 130.454 823.823 124.687C819.426 118.86 815 112.392 815 105.092V50C815 38.9543 823.954 30 835 30H1279Z"
+      fill="#F96A29"
+    />
+  </g>
+</svg>
