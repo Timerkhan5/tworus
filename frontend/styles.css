@@ -500,29 +500,88 @@ h2 {
   align-items: center;
   justify-content: center;
   padding: 10px 18px;
-  border-radius: 4px;
   text-decoration: none;
   font-weight: 600;
   font-size: 14px;
+  border-radius: 0;
+  transition: transform 120ms ease, box-shadow 120ms ease, background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
+  background: transparent;
+  border: 0;
+
+  --btn-cut: 22px;
+  --btn-border-width: 0px;
+  --btn-border-color: transparent;
+  --btn-bg: transparent;
+
+  clip-path: polygon(var(--btn-cut) 0, 100% 0, 100% 100%, 0 100%, 0 var(--btn-cut));
+  -webkit-clip-path: polygon(var(--btn-cut) 0, 100% 0, 100% 100%, 0 100%, 0 var(--btn-cut));
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--btn-border-color);
+  clip-path: polygon(var(--btn-cut) 0, 100% 0, 100% 100%, 0 100%, 0 var(--btn-cut));
+  -webkit-clip-path: polygon(var(--btn-cut) 0, 100% 0, 100% 100%, 0 100%, 0 var(--btn-cut));
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: var(--btn-border-width);
+  z-index: -1;
+  background: var(--btn-bg);
+
+  --btn-cut-inner: calc(var(--btn-cut) - var(--btn-border-width));
+  clip-path: polygon(var(--btn-cut-inner) 0, 100% 0, 100% 100%, 0 100%, 0 var(--btn-cut-inner));
+  -webkit-clip-path: polygon(var(--btn-cut-inner) 0, 100% 0, 100% 100%, 0 100%, 0 var(--btn-cut-inner));
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:focus-visible {
+  outline: 2px solid rgba(0, 0, 0, 0.18);
+  outline-offset: 3px;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
 }
 
 .btn-primary {
-  background: #f37021;
+  --btn-bg: #f37021;
+  --btn-border-width: 0px;
+  --btn-border-color: transparent;
   color: #fff;
-  border: 0;
+  gap: 10px;
 }
 
-.btn-primary::after {
-  content: "›";
-  margin-left: 10px;
+.btn-arrow {
   font-size: 18px;
   line-height: 1;
+  transform: translateY(-1px);
 }
 
 .btn-outline {
-  border: 1px solid #bfbfbf;
+  --btn-bg: #fff;
+  --btn-border-width: 1px;
+  --btn-border-color: #bfbfbf;
   color: #222;
-  background: #fff;
+}
+
+#gallery {
+  scroll-margin-top: 24px;
 }
 
 /* Visualization image */
@@ -719,6 +778,62 @@ h2 {
   color: #000;
 }
 
+/* Body контакты */
+.contacts {
+  position: absolute;
+  width: 100%;
+  max-width: 1440px;
+  height: 513px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 2975px;
+  background: #EEEEEE;
+  overflow: hidden;
+}
+
+.contacts-rect {
+  position: absolute;
+  width: calc(100% - 36px);
+  height: 454px;
+  left: 18px;
+  top: 29px;
+  background: #FFFFFF;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.contacts-rect-title {
+  position: absolute;
+  width: 172px;
+  height: 47px;
+  left: 144px;
+  top: 91px;
+  margin: 0;
+
+  font-family: 'Hauora', 'Hauora Sans', system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 130%;
+  color: #000000;
+}
+
+.contacts-rect-info {
+  position: absolute;
+  width: 448px;
+  height: 107px;
+  left: 144px;
+  top: 156px;
+  margin: 0;
+
+  font-family: 'Hauora', 'Hauora Sans', system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #000000;
+}
+
 /* Левый контент на белом прямоугольнике */
 .sta-left {
   position: absolute;
@@ -861,20 +976,20 @@ h2 {
 
 .body-2-title {
   position: absolute;
-  width: 543px;
+  width: 760px;
   height: auto;
-  left: calc(50% - 543px/2 - 312.5px);
+  left: calc(50% - 760px/2 - 312.5px);
   top: 32px;
   font-family: 'Hauora Sans', 'Hauora', sans-serif;
   font-style: normal;
   font-weight: 700;
-  font-size: 33px;
+  font-size: clamp(28px, 2.2vw, 33px);
   line-height: 140%;
   color: #000000;
   margin: 0;
   padding: 0;
-  white-space: normal;
-  overflow-wrap: anywhere;
+  white-space: nowrap;
+  overflow-wrap: normal;
 }
 
 .body-2-advantages {
@@ -999,8 +1114,10 @@ h2 {
   top: auto;
   margin: 60px auto 24px auto;
   padding: 0 20px;
-  text-align: left;
+  text-align: center;
   max-width: 1440px;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 /* body-2-stages container */
@@ -1140,6 +1257,12 @@ h2 {
     margin: 0 0 24px 0;
     padding: 0;
     text-align: left;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .body-2 .body-2-title:nth-of-type(2) {
+    text-align: center;
   }
   
   .body-2-advantages {

@@ -220,6 +220,25 @@ function alignStagesImage() {
 // Выполняем выравнивание после загрузки DOM и при изменении размера окна
 document.addEventListener('DOMContentLoaded', () => {
   alignStagesImage();
+
+  // Hero CTA: smooth scroll to gallery
+  const galleryCtaLink = document.querySelector('.hero-ctas .btn-primary[href=\"#gallery\"]');
+  const gallerySection = document.getElementById('gallery');
+
+  if (galleryCtaLink && gallerySection) {
+    galleryCtaLink.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      gallerySection.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+
+      if (window && window.history && window.history.replaceState) {
+        window.history.replaceState(null, '', '#gallery');
+      }
+    });
+  }
   
   // Пересчитываем при изменении размера окна
   window.addEventListener('resize', () => {
