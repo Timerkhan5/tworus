@@ -17,6 +17,25 @@
     font-display: swap;
 }
 
+/* Alias for design specs that reference 'Hauora' */
+@font-face {
+    font-family: 'Hauora';
+    src: url('/src/fonts/hauora_sans/fonts/web/Hauora-Regular.woff2') format('woff2'),
+         url('/src/fonts/hauora_sans/fonts/web/Hauora-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Hauora';
+    src: url('/src/fonts/hauora_sans/fonts/web/Hauora-ExtraBold.woff2') format('woff2'),
+         url('/src/fonts/hauora_sans/fonts/web/Hauora-ExtraBold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
 :root {
     --accent: #d35400;
     --bg: #EEEEEE;
@@ -624,6 +643,82 @@ h2 {
   display: block;
 }
 
+/* body-3 */
+.body-3 {
+  position: absolute;
+  width: 1440px;
+  height: 1082px;
+  left: 0px;
+  top: 1892px;
+  background-color: #fff;
+  overflow-x: hidden;
+}
+
+.body-3-inner {
+  position: absolute;
+  inset: 0;
+  padding: 140px 120px 56px; /* место под заголовок/подзаголовок */
+  font-family: "Hauora", "Hauora Sans", "Manrope", "Inter", system-ui, sans-serif;
+}
+
+.body-3-title {
+  position: absolute;
+  width: 657px;
+  height: 46px;
+  left: calc(50% - 657px / 2 - 2.5px);
+  top: 40px;
+  margin: 0;
+
+  font-family: 'Hauora', 'Hauora Sans', system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 33px;
+  line-height: 140%;
+  text-align: center;
+
+  color: #000000;
+}
+
+.body-3-subtitle {
+  position: absolute;
+  width: 902px;
+  height: 22px;
+  left: calc(50% - 902px / 2 - 2px);
+  top: 89px;
+  margin: 0;
+
+  font-family: 'Hauora', 'Hauora Sans', system-ui, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+
+  color: #000000;
+
+  overflow-wrap: anywhere;
+}
+
+.body-3 .grid {
+  margin-top: 12px;
+  max-height: 720px;
+}
+
+.body-3-galleries {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+.body-3-gallery-title {
+  margin: 0;
+  font-family: 'Hauora', 'Hauora Sans', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.2;
+  color: #000;
+}
+
 /* Левый контент на белом прямоугольнике */
 .sta-left {
   position: absolute;
@@ -762,28 +857,7 @@ h2 {
   text-underline-offset: 3px;
 }
 
-/* пунктир + стрелка справа (как на макете) */
-.sta-telegram-row::after {
-  content: "";
-  position: absolute;
-  right: 32px;
-  top: 50%;
-  width: 64px;
-  border-top: 2px dashed rgba(0, 0, 0, 0.35);
-  transform: translateY(-30%);
-}
-
-.sta-telegram-row::before {
-  content: "";
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  width: 10px;
-  height: 10px;
-  border-left: 2px solid rgba(0, 0, 0, 0.55);
-  border-bottom: 2px solid rgba(0, 0, 0, 0.55);
-  transform: translateY(-35%) rotate(45deg);
-}
+/* пунктир + стрелка убраны */
 
 .body-2-title {
   position: absolute;

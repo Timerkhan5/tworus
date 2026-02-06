@@ -1,0 +1,15 @@
+{
+  "name": "tmp-svg-tools",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "svg-path-bounds": "^1.0.2"
+  }
+}

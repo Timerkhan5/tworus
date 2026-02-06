@@ -227,6 +227,47 @@
           </div>
         </div>
         <!-- ====== /STA ====== -->
+
+        <!-- ====== BODY-3 / GALLERY ====== -->
+        <section id="gallery" class="body-3" aria-label="Галерея работ">
+          <div class="body-3-inner">
+            <h2 class="body-3-title">Наши проекты</h2>
+            <p class="body-3-subtitle">Вы всегда можете приехать на нашу действующую стройку&nbsp;или посмотреть готовый объект в Самарской области</p>
+
+            <div class="body-3-galleries" aria-label="Галереи: видео и фото">
+              <section class="body-3-gallery" aria-label="Видео">
+                <h3 class="body-3-gallery-title">Видео</h3>
+
+                <div id="media-grid-videos" class="grid" aria-label="Сетка видео"></div>
+                <button id="toggle-gallery-videos" class="toggle-gallery" type="button" aria-label="Показать все видео">
+                  Показать все
+                </button>
+              </section>
+
+              <section class="body-3-gallery" aria-label="Фото">
+                <h3 class="body-3-gallery-title">Фото</h3>
+
+                <div id="media-grid-photos" class="grid" aria-label="Сетка фото"></div>
+                <button id="toggle-gallery-photos" class="toggle-gallery" type="button" aria-label="Показать все фото">
+                  Показать все
+                </button>
+              </section>
+            </div>
+          </div>
+        </section>
+
+        <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Просмотр медиа" tabindex="-1">
+          <div class="modal-toolbar">
+            <span id="modal-counter" class="modal-counter" aria-label="Счётчик медиа"></span>
+          </div>
+
+          <button id="modal-close" class="modal-close" type="button" aria-label="Закрыть">×</button>
+          <button id="modal-prev" class="modal-nav" type="button" aria-label="Previous">‹</button>
+          <button id="modal-next" class="modal-nav" type="button" aria-label="Next">›</button>
+
+          <div id="modal-content" class="modal-content" aria-label="Контент медиа"></div>
+        </div>
+        <!-- ====== /BODY-3 ====== -->
     </main>
 
     <script src="app.js"></script>

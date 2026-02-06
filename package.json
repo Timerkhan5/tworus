@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "svg-path-bounds": "^1.0.2"
+  }
+}

@@ -1,6 +1,7 @@
 const yearEl = document.getElementById('year'); if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-const grid = document.getElementById('media-grid');
+const videoGrid = document.getElementById('media-grid-videos');
+const photoGrid = document.getElementById('media-grid-photos');
 const modal = document.getElementById('modal');
 const modalContent = document.getElementById('modal-content');
 const modalClose = document.getElementById('modal-close');
@@ -8,52 +9,39 @@ const modalPrev = document.getElementById('modal-prev');
 const modalNext = document.getElementById('modal-next');
 const modalCounter = document.getElementById('modal-counter');
 
-let galleryImages = []; 
+let activeItems = [];
 let currentIndex = -1;
 
-async function loadMedia(){
-  try{
-      const res = await fetch('https://api.турус.рф/api/gallery');
-    if(!res.ok) throw new Error('Не удалось загрузить media.json');
-      const items = await res.json();
-    const images = (items || []).filter(i => i.type === 'image');
-      renderGrid(items);
-  }catch(err){
-    grid.innerHTML = `<p>Ошибка загрузки галереи: ${err.message}</p>`;
-    console.error(err);
-  }
-}
-const toggleBtn = document.getElementById('toggle-gallery');
+const setupToggle = ({ gridEl, toggleBtn }) => {
+  if (!gridEl || !toggleBtn) return;
 
-function toggleGallery() {
-    const grid = document.getElementById('media-grid');
-    if (grid.classList.contains('collapsed')) {
-        grid.classList.remove('collapsed');
-        grid.classList.add('expanded');
-        toggleBtn.textContent = 'Свернуть';
-    } else {
-        grid.classList.remove('expanded');
-        grid.classList.add('collapsed');
-        toggleBtn.textContent = 'Показать все';
+  const handleToggleClick = () => {
+    if (gridEl.classList.contains('collapsed')) {
+      gridEl.classList.remove('collapsed');
+      gridEl.classList.add('expanded');
+      toggleBtn.textContent = 'Свернуть';
+      return;
     }
-}
 
-toggleBtn.addEventListener('click', toggleGallery);
+    gridEl.classList.remove('expanded');
+    gridEl.classList.add('collapsed');
+    toggleBtn.textContent = 'Показать все';
+  };
 
-document.addEventListener('DOMContentLoaded', () => {
-    const grid = document.getElementById('media-grid');
-    grid.classList.add('collapsed');
-});
+  toggleBtn.addEventListener('click', handleToggleClick);
+  gridEl.classList.add('collapsed');
+};
 
-function renderGrid(items) {
-    galleryImages = [];
-  if(!items || items.length === 0){
-    grid.innerHTML = '<p>В галерее пока нет материалов.</p>';
+const renderGrid = ({ gridEl, items }) => {
+  if (!gridEl) return;
+
+  if (!items || items.length === 0) {
+    gridEl.innerHTML = '<p>В галерее пока нет материалов.</p>';
     return;
   }
 
-  grid.innerHTML = '';
-  items.forEach(item => {
+  gridEl.innerHTML = '';
+  items.forEach((item, idx) => {
     const card = document.createElement('div');
     card.className = 'card';
     card.tabIndex = 0;
@@ -61,26 +49,37 @@ function renderGrid(items) {
     
     const img = document.createElement('img');
     img.alt = item.title || '';
-    img.dataset.src = item.url; 
-    img.loading = 'lazy'; 
+    img.dataset.src = item.thumbUrl || item.url;
+    img.loading = 'lazy';
     img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
     card.appendChild(img);
 
-  const idx = galleryImages.length;
-  card.addEventListener('click', () => openModal(idx));
-  card.addEventListener('keydown', (e) => { if(e.key === 'Enter') openModal(idx); });
+    card.addEventListener('click', () => openModal(idx, items));
+    card.addEventListener('keydown', (e) => { if(e.key === 'Enter') openModal(idx, items); });
 
-  galleryImages.push(item);
-
-    grid.appendChild(card);
+    gridEl.appendChild(card);
   });
 
   observeImages();
-}
+};
+
+const loadGallery = async ({ kind, gridEl }) => {
+  if (!gridEl) return;
+
+  try {
+    const res = await fetch(`/api/gallery?kind=${encodeURIComponent(kind)}`);
+    if (!res.ok) throw new Error('Не удалось загрузить галерею');
+    const items = await res.json();
+    renderGrid({ gridEl, items });
+  } catch (err) {
+    gridEl.innerHTML = `<p>Ошибка загрузки галереи: ${err.message}</p>`;
+    console.error(err);
+  }
+};
 
 let imgObserver = null;
 function observeImages(){
-  const lazyImgs = grid.querySelectorAll('img[data-src]');
+  const lazyImgs = document.querySelectorAll('.grid img[data-src]');
   if(lazyImgs.length === 0) return;
 
   if('IntersectionObserver' in window){
@@ -114,8 +113,10 @@ function observeImages(){
   }
 }
 
-function openModal(index){
-  if(typeof index !== 'number' || index < 0 || index >= galleryImages.length) return;
+function openModal(index, items){
+  if(!Array.isArray(items)) return;
+  if(typeof index !== 'number' || index < 0 || index >= items.length) return;
+  activeItems = items;
   currentIndex = index;
   renderModalContent();
   updateCounter();
@@ -126,7 +127,7 @@ function openModal(index){
 
 function renderModalContent(){
     modalContent.innerHTML = '';
-    const item = galleryImages[currentIndex];
+    const item = activeItems[currentIndex];
     if (item.type === 'video') {
         const video = document.createElement('video');
         video.src = item.url;
@@ -143,11 +144,11 @@ function renderModalContent(){
 
 function updateCounter(){
   if(!modalCounter) return;
-  modalCounter.textContent = `${currentIndex + 1} / ${galleryImages.length}`;
+  modalCounter.textContent = `${currentIndex + 1} / ${activeItems.length}`;
 }
 
 function showNext(){
-  if(currentIndex < galleryImages.length - 1){
+  if(currentIndex < activeItems.length - 1){
     currentIndex += 1;
     renderModalContent();
     updateCounter();
@@ -181,7 +182,18 @@ document.addEventListener('keydown', (e) => {
 });
 
 
-loadMedia();
+setupToggle({
+  gridEl: videoGrid,
+  toggleBtn: document.getElementById('toggle-gallery-videos'),
+});
+
+setupToggle({
+  gridEl: photoGrid,
+  toggleBtn: document.getElementById('toggle-gallery-photos'),
+});
+
+loadGallery({ kind: 'videos', gridEl: videoGrid });
+loadGallery({ kind: 'photos', gridEl: photoGrid });
 
 // Выравнивание stages-image по первому и последнему stage-item
 function alignStagesImage() {
