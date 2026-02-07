@@ -11,7 +11,6 @@ const modalCounter = document.getElementById('modal-counter');
 
 let activeItems = [];
 let currentIndex = -1;
-console.log("Cloud name:", process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME);
 
 const setupToggle = ({ gridEl, toggleBtn }) => {
   if (!gridEl || !toggleBtn) return;
