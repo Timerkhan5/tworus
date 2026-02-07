@@ -835,10 +835,6 @@ h2 {
   position: relative;
   padding-right: 112px;
 
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
-
   font-weight: 500;
   font-size: 18px;
   line-height: 1.25;
