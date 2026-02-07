@@ -379,10 +379,71 @@ h2 {
 }
 
 .site-footer {
-    padding: 18px 0;
+    position: absolute;
+    left: 0;
+    top: 3674px;
+    width: 1440px;
+    height: 133px;
+    padding: 0;
     text-align: center;
     color: #666;
-    margin-top: 36px;
+    margin-top: 0;
+    background: #EEEEEE;
+}
+
+.footer-line {
+    position: absolute;
+    width: 1400px;
+    height: 0;
+    left: 23px;
+    top: 24px;
+    border: 1px solid #EEEEEE;
+    transform: rotate(180deg);
+}
+
+.footer-brand {
+    position: absolute;
+    left: calc(50% - 194px/2 - 540px);
+    top: calc(50% - 51px/2 - 19px);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.footer-title {
+    font-family: 'Druk Text Wide Cyr', 'Hauora', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 35px;
+    line-height: 44px;
+    color: #7D7D7D;
+}
+
+.footer-icons {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-icon {
+    width: 28px;
+    height: 28px;
+    display: block;
+}
+
+.footer-copyright {
+    position: absolute;
+    width: 902px;
+    height: 22px;
+    left: calc(50% - 902px/2 - 2px);
+    top: 111px;
+    font-family: 'Hauora', 'Hauora Sans', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    text-align: center;
+    color: #000000;
 }
 
 /* --- ��������� ��������� --- */
@@ -688,27 +749,113 @@ h2 {
 .sta {
   position: absolute;
   width: 1440px;
-  height: 293px;
+  height: 480px;
   left: 0px;
   top: 1599px;
   display: block;
 }
 
-.sta img {
+.sta > img {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
+  height: 293px;
   display: block;
+}
+
+/* contacts: телефоны, почта, кнопка Telegram */
+.contacts-phones {
+  position: absolute;
+  left: 142px;
+  top: 263px;
+  display: flex;
+  flex-direction: column;
+}
+
+.contacts-phones a {
+  font-family: 'Hauora', 'Hauora Sans', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 155%;
+  color: #000000;
+  text-decoration: none;
+}
+
+.contacts-phones a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.contacts-mail {
+  position: absolute;
+  left: 142px;
+  top: 345px;
+
+  font-family: 'Hauora', 'Hauora Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 155%;
+  color: rgba(0, 0, 0, 0.8);
+  text-decoration: none;
+}
+
+.contacts-mail:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.contacts-tg {
+  position: absolute;
+  width: 257.5px;
+  height: 57.41px;
+  left: calc(50% - 257.5px/2 - 449.25px);
+  top: 391px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: transparent;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 257.5 57.41' preserveAspectRatio='none'><path d='M14 0 H257.5 V57.41 H0 V14 Z' fill='white' stroke='%23000' stroke-width='2'/></svg>");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: #000000;
+  border-radius: 0;
+  --contacts-cut: 14px;
+  clip-path: polygon(var(--contacts-cut) 0, 100% 0, 100% 100%, 0 100%, 0 var(--contacts-cut));
+  -webkit-clip-path: polygon(var(--contacts-cut) 0, 100% 0, 100% 100%, 0 100%, 0 var(--contacts-cut));
+  text-decoration: none;
+
+  font-family: 'Hauora', 'Hauora Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1;
+
+  transition: background 0.2s ease, transform 0.15s ease;
+  border: 0;
+}
+
+.contacts-tg:hover {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 257.5 57.41' preserveAspectRatio='none'><path d='M14 0 H257.5 V57.41 H0 V14 Z' fill='%23f6f6f6' stroke='%23000' stroke-width='2'/></svg>");
+  transform: translateY(-1px);
+}
+
+.contacts-tg:active {
+  transform: translateY(0);
 }
 
 /* body-3 */
 .body-3 {
   position: absolute;
-  width: 1440px;
+  width: 100%;
   height: 1082px;
-  left: 0px;
-  top: 1892px;
+  left: 0;
+  top: 2079px;
   background-color: #fff;
   overflow-x: hidden;
 }
@@ -786,7 +933,7 @@ h2 {
   height: 513px;
   left: 50%;
   transform: translateX(-50%);
-  top: 2975px;
+  top: 3161px;
   background: #EEEEEE;
   overflow: hidden;
 }
@@ -832,6 +979,24 @@ h2 {
   font-size: 16px;
   line-height: 150%;
   color: #000000;
+}
+
+.contacts-map {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  width: 780px;
+  height: 360px;
+  transform: translateY(-50%);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.contacts-map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
 }
 
 /* Левый контент на белом прямоугольнике */
@@ -1294,5 +1459,357 @@ h2 {
   
   .stages-image img {
     max-height: none;
+  }
+}
+
+/* ====== Responsive layout (tablets/phones) ====== */
+@media (max-width: 1100px) {
+  .body-3,
+  .contacts,
+  .site-footer,
+  .sta {
+    position: static;
+    width: 100%;
+    height: auto;
+    left: auto;
+    top: auto;
+    transform: none;
+  }
+
+  .body-3-inner {
+    position: static;
+    padding: 40px 20px 32px;
+  }
+
+  .body-3-title,
+  .body-3-subtitle {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0 0 12px;
+    left: auto;
+    top: auto;
+  }
+
+  .body-3-title { text-align: left; }
+  .body-3-subtitle { text-align: left; }
+
+  .sta {
+    padding: 20px;
+  }
+
+  .sta img {
+    display: none;
+  }
+
+  .sta-left,
+  .sta-right {
+    position: static;
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .sta-left {
+    background: #fff;
+    margin-bottom: 12px;
+  }
+
+  .sta-right {
+    background: #F96A29;
+  }
+
+  .sta-left {
+  }
+
+  .sta-right a,
+  .sta-right .sta-telegram-text { color: #fff; }
+
+  .sta-left-arrow {
+    margin-left: auto;
+  }
+
+  .contacts {
+    padding: 20px;
+  }
+
+  .contacts-rect {
+    position: static;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 20px;
+  }
+
+  .contacts-rect-title,
+  .contacts-rect-info,
+  .contacts-phones,
+  .contacts-mail,
+  .contacts-tg {
+    position: static;
+    width: auto;
+    height: auto;
+    left: auto;
+    top: auto;
+    margin: 0 0 12px;
+  }
+
+  .contacts-tg {
+    margin-top: 6px;
+  }
+
+  .contacts-map {
+    position: static;
+    width: 100%;
+    height: 240px;
+    margin-top: 16px;
+  }
+
+  .site-footer {
+    padding: 16px 20px 20px;
+    height: auto;
+  }
+
+  .footer-line {
+    position: static;
+    width: 100%;
+    margin: 0 0 12px;
+  }
+
+  .footer-brand {
+    position: static;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .footer-title {
+    position: static;
+    width: auto;
+    height: auto;
+  }
+
+  .footer-icons {
+    position: static;
+  }
+
+  .footer-copyright {
+    position: static;
+    width: auto;
+    height: auto;
+    left: auto;
+    top: auto;
+    text-align: left;
+  }
+}
+
+@media (max-width: 600px) {
+  .sta {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow: visible;
+  }
+
+  .sta-left,
+  .sta-right {
+    padding: 16px 18px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+  }
+
+  .sta-left {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    position: relative;
+    align-self: stretch;
+    padding-bottom: 36px;
+    margin-bottom: 12px;
+    left: auto;
+    right: auto;
+  }
+
+  .sta-left-title {
+    font-size: 18px;
+    line-height: 1.25;
+  }
+
+  .sta-left-sub {
+    margin-top: 8px;
+    font-size: 13px;
+    line-height: 1.35;
+  }
+
+  .sta-left-arrow {
+    margin-left: 0;
+    width: 44px;
+    height: 44px;
+    position: absolute;
+    left: 50%;
+    bottom: -24px;
+    transform: translateX(-50%);
+    background: #fff;
+    border-radius: 999px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+    z-index: 3;
+  }
+
+  .sta-left-arrow span {
+    font-size: 34px;
+    display: inline-block;
+    transform: rotate(90deg);
+  }
+
+  .sta-left::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -24px;
+    width: 64px;
+    height: 64px;
+    transform: translateX(-50%);
+    background: #fff;
+    border-radius: 50%;
+    z-index: 1;
+  }
+
+  .sta-right {
+    margin-top: 0;
+    position: relative;
+    z-index: 1;
+    align-self: stretch;
+    left: auto;
+    right: auto;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .sta-right {
+    align-items: center;
+    text-align: center;
+    padding-bottom: 18px;
+  }
+
+  .sta-phone {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+  .sta-mail {
+    margin-top: 6px;
+    font-size: 14px;
+  }
+
+  .sta-telegram-row {
+    margin-top: 12px;
+    padding-right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    line-height: 1.35;
+  }
+}
+
+/* ====== Body-2 mobile cleanup ====== */
+@media (max-width: 1100px) {
+  .body-2 {
+    position: static;
+    width: 100%;
+    height: auto;
+    left: auto;
+    top: auto;
+    padding: 28px 20px 36px;
+    background: #FFFFFF;
+  }
+
+  .body-2-title {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0 0 16px;
+    padding: 0;
+    text-align: left;
+  }
+
+  .body-2-advantages {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 0;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .body-2 .advantage-item {
+    width: 100%;
+    max-width: 360px;
+    height: auto;
+  }
+
+  .body-2 .advantage-frame-bg,
+  .body-2 .advantage-frame {
+    height: 200px;
+  }
+
+  .body-2-stages {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+
+  .stages-container {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .stages-image {
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+    order: 0;
+  }
+
+  .stages-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+
+  .stages-list {
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+    padding: 0;
+    background: transparent;
+  }
+
+  .stage-item {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(249, 108, 44, 0.2);
+    gap: 12px;
+  }
+
+  .stage-item:last-child {
+    border-bottom: none;
+  }
+
+  .stage-number {
+    min-width: 56px;
+    font-size: 22px;
+    line-height: 28px;
+  }
+
+  .stage-desc {
+    font-size: 13px;
+    line-height: 1.35;
   }
 }
