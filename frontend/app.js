@@ -8,6 +8,7 @@ const modalClose = document.getElementById('modal-close');
 const modalPrev = document.getElementById('modal-prev');
 const modalNext = document.getElementById('modal-next');
 const modalCounter = document.getElementById('modal-counter');
+const API_BASE = "https://api.турус.рф";
 
 let activeItems = [];
 let currentIndex = -1;
@@ -67,7 +68,7 @@ const loadGallery = async ({ kind, gridEl }) => {
   if (!gridEl) return;
 
   try {
-    const res = await fetch(`/api/gallery?kind=${encodeURIComponent(kind)}`);
+      const res = await fetch(`${API_BASE}/api/gallery?kind=${encodeURIComponent(kind)}`);
     if (!res.ok) throw new Error('Не удалось загрузить галерею');
     const items = await res.json();
     renderGrid({ gridEl, items });
