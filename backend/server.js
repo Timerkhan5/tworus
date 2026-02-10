@@ -9,14 +9,14 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors({
-    origin: [
-        'https://xn--p1acbeb.xn--p1ai',
-    ],
+const corsOptions = {
+    origin: 'https://xn--p1acbeb.xn--p1ai',
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization']
-}));
+    allowedHeaders: ['Content-Type', 'Authorization'],
+};
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
