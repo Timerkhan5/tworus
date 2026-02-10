@@ -166,7 +166,7 @@ app.get("/api/icons", async (req, res) => {
     try {
         // Ищем иконки в папке tworus_icons (или другой, если у вас другая структура)
         const result = await cloudinary.search
-            .expression("folder:tworus_icons OR folder:icons")
+            .expression("folder:tworus/icons")
             .sort_by("created_at", "desc")
             .max_results(50)
             .execute();
