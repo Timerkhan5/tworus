@@ -8,7 +8,6 @@ import { fileURLToPath } from "url";
 dotenv.config();
 
 const app = express();
-const cors = require('cors');
 
 app.use(cors({
     origin: [
