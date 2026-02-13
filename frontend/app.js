@@ -8,7 +8,7 @@ const modalClose = document.getElementById('modal-close');
 const modalPrev = document.getElementById('modal-prev');
 const modalNext = document.getElementById('modal-next');
 const modalCounter = document.getElementById('modal-counter');
-const API_BASE = "https://api.xn--p1acbeb.xn--p1ai";
+const API_BASE = "";
 
 let activeItems = [];
 let currentIndex = -1;

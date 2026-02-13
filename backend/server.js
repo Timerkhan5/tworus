@@ -205,10 +205,13 @@ app.use(express.static(path.join(__dirname, "../frontend")));
 // Serve project-level `src` (images/icons) at /src so frontend can load /src/icons/...
 app.use('/src', express.static(path.join(__dirname, '../src')));
 
-app.get("*", (_, res) => {
-    res.sendFile(path.join(__dirname, "../frontend/index.html"));
-});
+const FRONTEND_DIR = path.join(__dirname, "../frontend");
 
+app.use(express.static(FRONTEND_DIR));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(FRONTEND_DIR, "index.html"));
+});
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`✅ Server running on http://localhost:${PORT}`);
