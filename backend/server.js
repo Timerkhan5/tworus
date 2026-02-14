@@ -9,24 +9,30 @@ dotenv.config();
 
 const app = express();
 
-const allowedOrigins = [
-    'https://xn--p1acbeb.xn--p1ai', // punycode for турус.рф
-    'https://турус.рф', // unicode form (some clients may send this)
-];
+// ===== CORS ТОЛЬКО ДЛЯ API =====
+
+const allowedOrigins = new Set([
+  "https://xn--p1acbeb.xn--p1ai",
+  "https://www.xn--p1acbeb.xn--p1ai",
+  "https://турус.рф",
+  "https://www.турус.рф",
+  "https://tworus.onrender.com",
+]);
 
 const corsOptions = {
-    origin: (origin, callback) => {
-        if (!origin) return callback(null, true); // allow non-browser requests (curl, server-side)
-        if (allowedOrigins.includes(origin)) return callback(null, true);
-        return callback(new Error('Not allowed by CORS'));
-    },
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+  origin: (origin, cb) => {
+    // НЕ бросаем ошибки — иначе снова будут 500
+    if (!origin) return cb(null, true);
+    if (allowedOrigins.has(origin)) return cb(null, true);
+    return cb(null, false);
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 };
 
-app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));
+// app.use(cors(corsOptions));
+// app.options('*', cors(corsOptions));
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
