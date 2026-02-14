@@ -1,40 +1,21 @@
-/* --- Fonts & base variables --- */
 @font-face {
-    font-family: 'Hauora Sans';
-    src: url('/fonts/hauora_sans/fonts/web/Hauora-Regular.woff2') format('woff2'),
-         url('/fonts/hauora_sans/fonts/web/Hauora-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
+  font-family: "Hauora";
+  src: url("/fonts/hauora_sans/fonts/web/Hauora-Regular.woff2") format("woff2"),
+       url("/fonts/hauora_sans/fonts/web/Hauora-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'Hauora Sans';
-    src: url('/fonts/hauora_sans/fonts/web/Hauora-ExtraBold.woff2') format('woff2'),
-         url('/fonts/hauora_sans/fonts/web/Hauora-ExtraBold.woff') format('woff');
-    font-weight: 900;
-    font-style: normal;
-    font-display: swap;
+  font-family: "Hauora";
+  src: url("/fonts/hauora_sans/fonts/web/Hauora-ExtraBold.woff2") format("woff2"),
+       url("/fonts/hauora_sans/fonts/web/Hauora-ExtraBold.woff") format("woff");
+  font-weight: 800; 
+  font-style: normal;
+  font-display: swap;
 }
 
-/* Alias for design specs that reference 'Hauora' */
-@font-face {
-    font-family: 'Hauora';
-    src: url('/fonts/hauora_sans/fonts/web/Hauora-Regular.woff2') format('woff2'),
-         url('/fonts/hauora_sans/fonts/web/Hauora-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Hauora';
-    src: url('/fonts/hauora_sans/fonts/web/Hauora-ExtraBold.woff2') format('woff2'),
-         url('/fonts/hauora_sans/fonts/web/Hauora-ExtraBold.woff') format('woff');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
 
 :root {
     --accent: #d35400;
