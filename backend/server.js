@@ -200,19 +200,23 @@ app.get("/api/icons", async (req, res) => {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-app.use(express.static(path.join(__dirname, "../frontend")));
-
-// Serve project-level `src` (images/icons) at /src so frontend can load /src/icons/...
-app.use('/src', express.static(path.join(__dirname, '../src')));
-
 const FRONTEND_DIR = path.join(__dirname, "../frontend");
+
+// (опционально) mime для шрифтов
+app.use((req, res, next) => {
+  if (req.path.endsWith(".woff2")) res.type("font/woff2");
+  if (req.path.endsWith(".woff")) res.type("font/woff");
+  next();
+});
 
 app.use(express.static(FRONTEND_DIR));
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(FRONTEND_DIR, "index.html"));
 });
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`✅ Server running on http://localhost:${PORT}`);
+  console.log(`✅ Server running on port ${PORT}`);
 });
+
